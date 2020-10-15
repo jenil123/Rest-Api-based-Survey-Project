@@ -1,0 +1,76 @@
+
+I have implemented the project in NodeJS and used MongoDB for storing, reading the data.
+I have created 4 collections in mongoose namely users, tokens, questions and answers.
+
+
+1. "users" collection:
+    a. This collection contains documents with properties name and password.
+    b. A user when logs-in the name and password would be stored into the users collection.
+   
+2. "tokens" collection:
+    a. This collection contains documents with properties name and token.
+    b. This collection will be used to obtain the name of current user using the assigned token.
+    c. Whenever a logs in,  a JWT based token will be generated and stored in the token collection along with the name.
+    d. If a user already has a token and again logs in then the token will be updated in the database
+
+3. "questions" collection:
+    a.This collection contains documents with properties Owner name, surveyNo and questions of survey created by the person with given name.
+    b.Once a logged in user goes to '/survey/create'  he/she would be asked to enter the questions and once done the user can click on done button 
+    to store the survey in questions collection.
+
+
+4. "answers" collection:
+    a. A verified user can go to '/survey/answer' wherein he/she would be asked to enter name of the person whose survey he wants to answer along 
+    with the survey no.
+    b. Once entered the user will be directed to the page where the page contains the questions corresponding to the specified user and survey no
+    c. Once submitted the data containing name of person answered the survey, name of person who created the survey and survey no would be entered 
+    into the answers collection.
+
+Following are the REST APIS that are created by me:
+
+1. '/login' (GET):
+    a. This api will render a login page where user can enter username and password 
+    b. After entering username and password a post request will be made to '/login'
+
+2. '/login' (POST):
+    a. The username entered by the user would be used to generate a JWT for 7days.
+    b. After the token is created it will be updated in tokens collection as tokens collection contains username and corresponding token.
+    c. The token would be stored into cookies so that it can be used for user authorization during creating surveys, answering surveys , viewing results of surveys.
+
+
+3. '/survey/create' (GET):
+    a. This api allows the user to go to the page where he/she can enter the questions he wants in his/her survey.
+    b. The token stored in the cookie would be used here for authenticating the user after which a valid user would be allowed to enter the questions.
+
+4. '/survey/create' (POST):
+    a. Once the user submits a question he/she will be again asked to enter a question until he/she clicks done.
+    b. Once the user clicks done the questions that are added by him/her would be added to the database along with the name of the person and his surveyNo.
+    c. surveyNo is the number of surveys the person has already taken.
+
+5. '/survey/answer'(GET):
+    a. This api would render an ejs template that will take in the name of person whose survey the user wants to answer along with 
+    the surveyNo.
+
+6. '/survey/answer'(POST): 
+    a. The user would enter name and surveyNo and the data entered by him would be checked and if valid then a 'view-survey' ejs template
+    would be rendered
+
+7. '/survey/store'(POST):
+    a. This api would  store the answers that the user gave to the survey he/she chose to answer.
+    b. The answers would be stored into answers collection along with name of survey creater, name of survey taker and surveyNo.
+
+8. '/survey/result/view'(GET):
+    a. This api would allow the user to check the results of his/her surveys.
+    b. He/She would see who answered his/her survey and which survey along with his/her answers.
+
+9. '/image'(GET):
+    a. An user would be directed to page wherein he/she would be asked to enter URL of image.
+
+10 '/image'(POST):
+    a. The URL entered  by the user will be used as a parameter by this api.
+    b. The image URL is decoded and resized using Jimp library which is a npm package.
+    c. The image of size 50*50 will be returned as a response from this api.
+
+
+
+I have used MongoDB for my database. I have shared my cluster with toodle team on email:internship@toddleapp.com. 

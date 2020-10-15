@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1><%= msg %></h1>
+</head>
+<body>
+    <form action='/survey/answer' method="POST">
+        <input type="text" name="name" placeholder="Enter name of survey taker" id="name">
+        <input type="text" name="surveyNo" placeholder="Enter surveyNo" id="surveyNo">
+        <button type="submit" value="submit">Submit</button>
+        
+
+    </form>
+    
+
+</body>
+</html>

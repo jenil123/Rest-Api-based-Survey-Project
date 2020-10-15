@@ -70,7 +70,3 @@ Following are the REST APIS that are created by me:
     a. The URL entered  by the user will be used as a parameter by this api.
     b. The image URL is decoded and resized using Jimp library which is a npm package.
     c. The image of size 50*50 will be returned as a response from this api.
-
-
-
-I have used MongoDB for my database. I have shared my cluster with toodle team on email:internship@toddleapp.com. 
